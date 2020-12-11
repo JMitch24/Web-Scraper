@@ -13,3 +13,7 @@ article = soup.find('div', class_= 'summary')
 
 headline = article.h3.a.text
 print(headline)
+
+
+summary = article.p.text 
+print(summary)
