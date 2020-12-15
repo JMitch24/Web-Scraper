@@ -7,19 +7,19 @@ from termcolor import colored
 topic_selection = input("What topics are ya\' lookin\' for today for today?: ")
 
 
-def politico_feature_parse(): 
-  url = "https://www.politico.com/"+topic_selection
-  page = requests.get(url)
 
-  soup= BeautifulSoup(page.content, 'lxml')
-  article = soup.find('div', class_= 'summary')
+url = "https://www.politico.com/"+topic_selection
+page = requests.get(url)
 
-  headline = article.h3.a.text
-  print(colored(headline, attrs=['bold']))
+soup= BeautifulSoup(page.content, 'lxml')
+article = soup.find('div', class_= 'summary')
+
+headline = article.h3.a.text
+print(colored(headline, attrs=['bold']))
 
 
-  summary = article.p.text 
-  print(summary)
+summary = article.p.text 
+print(summary)
 
 
 
@@ -45,45 +45,42 @@ def politico_article_parse_for_collapsed (url, page, soup,headline_class, headli
 
   
 
-"""
 
+"""
 politico_one_collapased_headline_class = 'content-group tag-latest'
 politico_one_collapased_headline_tag = 'div'
 politico_one_collapased_summary_tag = 'p'
 politico_one_collapased_summary_class = 'dek'
 
 politico_article_parse_for_collapsed(url, page, soup, politico_one_collapased_headline_class, politico_one_collapased_headline_tag, politico_one_collapased_summary_tag, politico_one_collapased_summary_class)  #Politico 1st Collapsed
-
 """
 
 
 
 
-def politico_article_parse_for_collapsed_two (url, page, soup,headline_class, headline_tag, summary_tag, summary_class):
-  article = soup.find(headline_tag, class_= headline_class)
-  article_narrow = soup.find()
-  headline = article.h3.a.text
-  print(colored("\n" + headline, attrs=['bold']))
+
+
+def politico_article_parse_for_collapsed_two (url, page, soup,headline_class, headline_tag, article):
+  article = soup.find_all('div', class_= "stor-frag format-m")
+  
+  
+  headline = article.find('a', class_= 'summary')
+  #print(colored("\n" + headline, attrs=['bold']))
+  article_print = colored("\n" + (article.text), attrs=['bold'])
+  print(article) 
+
   
 
-  article_link = article.h3.a
-  for link in article_link:
-      href =article_link.get("href")
-      
+article_link = article.h3.a
+for link in article_link:
+    href =article_link.get("href")
+    
 
-  url = (href)
-  page = requests.get(url)
-  soup= BeautifulSoup(page.content, 'lxml')
-  article = soup.find(summary_tag, class_= summary_class)
-  headline = article.text
-  print (headline)
+
+headline = article.text
+print (href)
+  
 
 
 
 
-politico_two_collapased_headline_class = 'story-frag format-m'
-politico_two_collapased_headline_tag = 'div'
-politico_two_collapased_summary_tag = 'p'
-politico_two_collapased_summary_class = 'dek'
-
-politico_article_parse_for_collapsed(url, page, soup, politico_two_collapased_headline_class, politico_two_collapased_headline_tag, politico_two_collapased_summary_tag, politico_two_collapased_summary_class)  #Politico 1st Collapsed
