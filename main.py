@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from lxml import html
-import requests
 from termcolor import colored
 
 
@@ -18,6 +17,7 @@ topic_selection = input("What topics are ya\' lookin\' for today for today?: ")
 print("\n")
 
 dividing_line()
+print("Politco Articles: ")
 
 url = "https://www.politico.com/" + topic_selection
 page = requests.get(url)
@@ -64,21 +64,10 @@ politico_one_href = href
 
 
 
-def dividing_line():
-    x = 0
-    while x < (100):
-        print("-_", end='')
-        x = x + 5
-
 
 dividing_line()
-import datetime
+print("NPR Daily Podcasts: ")
 
-date = datetime.datetime.now()
-
-date_year = date.strftime("%Y")
-date_month = date.strftime("%m")
-date_day = date.strftime("%d")
 
 
 url = 'https://www.npr.org/podcasts/510310/npr-politics-podcast'
@@ -123,13 +112,13 @@ npr_two_href = (href)
 
 
 dividing_line()
-
+print("Washington Post Articles: ")
 
 
 if topic_selection == "congress":
     topic_selection = "powerpost"
 else:
-    topic_selection = "congress"
+    topic_selection = topic_selection
 
 url = "https://www.washingtonpost.com/politics/" + topic_selection
 page = requests.get(url)
@@ -175,7 +164,7 @@ elif user_article_choice == "2":
   article_url = npr_one_href 
   print(article_url)
 elif user_article_choice == "3":
-  article_url =  npr_two_href\
+  article_url =  npr_two_href
   print(article_url) 
 elif user_article_choice == "4":
   article_url = wp_one_href
