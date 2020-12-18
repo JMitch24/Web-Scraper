@@ -120,6 +120,7 @@ wp_one_href = (href)
 
 
 dividing_line()
+print("Links To The Articles: ")
 #This code below is the what takes the user's input form the input question below and outputs the corresponding link to the article the user wanted to see.
 user_article_choice =input("\n Which of the Articles Above do ya\' want to see: ")
 #These if/else statments match up the links outut by each of the code sections above with the article headlines numerical value that was assigned to them
