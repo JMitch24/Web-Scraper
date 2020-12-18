@@ -42,8 +42,6 @@ politico_zero_href = href
 
 
 
-
-
 article = soup.find('div', class_='content-group tag-latest')
 
 headline = article.h3.a.text
@@ -59,7 +57,7 @@ soup = BeautifulSoup(page.content, 'lxml')
 article = soup.find('p', class_='dek')
 summary = article.text
 print("\n" + summary)
-politico_two_href = (href)
+politico_one_href = href
 
 
 
@@ -160,16 +158,30 @@ user_article_choice =input("\n Which of the Articles Above do ya\' want to see: 
 
 if user_article_choice == "0":
   article_url = politico_zero_href
+  page = requests.get(article_url)
+  soup = BeautifulSoup(page.content, 'lxml')
+  article = soup.find('div', class_='story-text')
+  print(article.text)
+  
+  
+
 elif user_article_choice == "1":
   article_url = politico_one_href
+  page = requests.get(article_url)
+  soup = BeautifulSoup(page.content, 'lxml')
+  article = soup.find('div', class_='container__column container__column--story center-horizontally')
+  print(article.text)
 elif user_article_choice == "2":
   article_url = npr_one_href 
+  print(article_url)
 elif user_article_choice == "3":
-  article_url =  npr_two_href 
+  article_url =  npr_two_href\
+  print(article_url) 
 elif user_article_choice == "4":
-  article_url = wp_one_href 
+  article_url = wp_one_href
+  print(article_url) 
 else:
-  "Sorry that's not a valid article number to chose from."
+  print("Sorry that's not a valid article number to chose from.")
 
 
 
